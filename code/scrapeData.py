@@ -31,9 +31,9 @@ def scrape_data_to_csv():
             values = map(lambda x: x.text, value_elements)
             all_data.append(list(values))
 
-        csv_path = path_to_data + "allData.csv"
+        csv_path = path_to_data + "dirtyData.csv"
         with open(csv_path, "w", newline='') as file:
             writer = csv.writer(file)
             writer.writerows(all_data)
-            
+        
         return csv_path
