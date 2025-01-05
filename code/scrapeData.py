@@ -1,5 +1,6 @@
 """ 
 Scraping data of students performance from https://www.kaggle.com/datasets/stealthtechnologies/predict-student-performance-dataset/data
+NOTE: Workaround was made to deal with dynamic loading of table data
 """
 
 from bs4 import BeautifulSoup
