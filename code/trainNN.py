@@ -10,6 +10,7 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 
+# Training process
 """ 
 trainings_data = pd.read_csv('../data/train/train_data.csv')
 
@@ -31,6 +32,7 @@ model.fit(input_train, output_train, epochs=100, batch_size=32)
 
 model.save('currentSolutions.h5') """
 
+# Getting already trained model
 model = load_model('currentSolutions.h5')
 
 test_data = pd.read_csv('../data/validate/test_data.csv')
