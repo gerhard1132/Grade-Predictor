@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  knowledgebase:
+    image: zunaira521/knowledgebase-gradepredictor:latest
+    container_name: knowledgebase_container
+    volumes:
+      - ai_system:/tmp
+    networks:
+      - ai_network
+
+  codebase:
+    image: zunaira521/codebase-gradepredictor:latest
+    container_name: codebase_container
+    volumes:
+      - ai_system:/tmp
+    networks:
+      - ai_network
+
+volumes:
+  ai_system:
+
+networks:
+  ai_network:
+
