@@ -5,8 +5,8 @@ Main execution of all main steps in creating a neural network
 import pandas as pd
 import random
 
-from scrapeData import scrape_data_to_csv
-from prepareData import clean_data
+from data_prep.scrapeData import scrape_data_to_csv
+from data_prep.prepareData import clean_data
 
 # Step 1: Scrape data to csv
 csv_path = scrape_data_to_csv()

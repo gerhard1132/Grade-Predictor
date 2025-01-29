@@ -53,10 +53,3 @@ plt.ylabel("Count")  # Updated label
 plt.title("Histogram of Residuals (Prediction Errors)")  # Updated title
 plt.savefig("residual_plot.png")
 plt.show()
-
-
-
-
-
-
-
