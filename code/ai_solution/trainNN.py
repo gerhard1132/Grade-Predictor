@@ -8,7 +8,7 @@ from tensorflow.keras.models import load_model # type: ignore
 import matplotlib.pyplot as plt
 
 
-docs_folder = '../../documentation/ai/'
+docs_folder = '../../documentation/ai_docs/'
 
 # Training process
 trainings_data = pd.read_csv('../../data/train/train_data.csv')
