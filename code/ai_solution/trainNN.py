@@ -3,8 +3,8 @@ import pandas as pd
 import os
 import seaborn
 import pandas as pd
-from tensorflow.keras import layers, models
-from tensorflow.keras.models import load_model
+from tensorflow.keras import layers, models # type: ignore
+from tensorflow.keras.models import load_model # type: ignore
 import matplotlib.pyplot as plt
 
 
@@ -43,7 +43,7 @@ output_pred = model.predict(input_test)
 
 sample_input = pd.DataFrame([[0.5, 100, 8, 100]], columns=["Socioeconomic Score", "Study Hours", "Sleep Hours", "Attendance (%)"])
 prediction = model.predict(sample_input)
-print(prediction)
+print(f'The models grade prediction is: {prediction}')
 
 data_for_heatmap = pd.DataFrame(input_test, columns=["Socioeconomic Score", "Study Hours", "Sleep Hours", "Attendance (%)"])
 data_for_heatmap["Predicted Grades"] = output_pred.flatten()
