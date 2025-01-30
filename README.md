@@ -10,8 +10,21 @@ This repository and its strukture is based on AI-CPS by Marcus Grum. It intends 
 A following estimate of a grade between 0-100 is made by a neural network. 
 
 # Getting Started
+Run the provided OLS or AI model with the corresponding `docker compose` command:
+
+1. OLS model: 
+```bash
+docker compose -f .\docker-compose.ols.yml up
+```
+
+2. AI model:
+```bash
+docker compose -f .\docker-compose.ai.yml up
+```
+
+Every image used in this repository can be viewed [here](https://hub.docker.com/repositories/gerhard1132)
 
 # Authors
 
 # Status
-In development.
+Finished project! (Project done under module AIBAS at the Univserity of Potsdam)
