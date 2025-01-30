@@ -38,8 +38,9 @@ services:
       - |
         rm -rf /tmp/codeBase/ && cp -r /codeBase/ /tmp/;
         python /tmp/codeBase/ai_solution/apply_NN.py "/tmp/codeBase/ai_solution/result/" "/tmp/knowledgeBase/currentAiSolution.h5" "/tmp/activationBase/activation_data.csv";
-      # results under: cat /tmp/codeBase/ai_solution/result/prediction.txt
-
+        echo "The result is -->"
+        cat /tmp/codeBase/ai_solution/result/prediction.txt
+        
 volumes:
   ai_system:
     external: true

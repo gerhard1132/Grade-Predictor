@@ -38,7 +38,8 @@ services:
       - |
         rm -rf /tmp/codeBase/ && cp -r /codeBase/ /tmp/;
         python /tmp/codeBase/ols_solution/apply_ols_model.py "/tmp/codeBase/ols_solution/result/" "/tmp/knowledgeBase/currentOlsSolution.pkl" "/tmp/activationBase/activation_data.csv";
-      # results under: cat /tmp/codeBase/ols_solution/result/ols_result.txt
+        echo "The result is -->"
+        cat /tmp/codeBase/ols_solution/result/ols_result.txt
 
 volumes:
   ai_system:
