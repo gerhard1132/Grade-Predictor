@@ -1,3 +1,5 @@
 FROM busybox
 
-ADD ../../data/activation/activation_data.csv /tmp/activationBase/
+RUN mkdir -p /tmp/activationBase
+
+COPY activation_data.csv /tmp/activationBase/
