@@ -22,9 +22,7 @@ docker compose -f .\docker-compose.ols.yml up
 docker compose -f .\docker-compose.ai.yml up
 ```
 
-Every image used in this repository can be viewed [here](https://hub.docker.com/repositories/gerhard1132)
-
-# Authors
+Every image used in this repository can be viewed [here](https://hub.docker.com/repositories/gerhard1132).
 
 # Status
 Finished project! (Project done under module AIBAS at the Univserity of Potsdam)
