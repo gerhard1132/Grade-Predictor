@@ -1,13 +1,9 @@
-FROM python
+FROM python:3.12
 
-RUN mkdir -p /tmp/codeBase/
-RUN mkdir -p /tmp/codeBase/ai_solution
-RUN mkdir -p /tmp/codeBase/ols_solution
-
-ADD ai_solution/ /tmp/codeBase/ai_solution
-ADD ols_solution/ /tmp/codeBase/ols_solution
+ADD ai_solution/ /codeBase/ai_solution
+ADD ols_solution/ /codeBase/ols_solution
 
 # License & readme
-ADD README.md /tmp/codeBase/
+ADD README.md /codeBase/
 
-RUN pip install --no-cache-dir keras tensorflow pandas statsmodels
+RUN pip3 install --no-cache-dir keras pandas statsmodels tensorflow

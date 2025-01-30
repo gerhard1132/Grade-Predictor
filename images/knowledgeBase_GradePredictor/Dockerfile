@@ -1,10 +1,8 @@
 FROM busybox
 
-RUN mkdir -p /tmp/knowledgeBase/
-
 # OLS and AI models
-ADD currentOlsSolution.pkl /tmp/knowledgeBase/
-ADD currentAiSolution.h5 /tmp/knowledgeBase/
+ADD currentOlsSolution.pkl /knowledgeBase/currentOlsSolution.pkl
+ADD currentAiSolution.h5 /knowledgeBase/currentAiSolution.h5
 
 # License & readme
 ADD README.md /tmp/knowledgeBase/

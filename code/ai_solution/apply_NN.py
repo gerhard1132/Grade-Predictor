@@ -4,7 +4,7 @@ import sys
 import os
 from tensorflow.keras.models import load_model # type: ignore
 
-def main(volume_path, model_path, activation_data_path):
+def main(output_folder, model_path, activation_data_path):
     model = load_model(model_path)
     
     test_data = pd.read_csv(activation_data_path)
@@ -13,7 +13,7 @@ def main(volume_path, model_path, activation_data_path):
     # Predict using the trained model
     output_pred = model.predict(input)
     
-    with open(os.path.join(volume_path, 'prediction.txt'), "w") as file:
+    with open(os.path.join(output_folder, 'prediction.txt'), "w") as file:
         file.write(str(output_pred))
 
 

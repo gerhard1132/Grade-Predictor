@@ -1,0 +1,45 @@
+# Docker compose for AI-Solution
+# result under: cat /tmp/codeBase/ai_solution/result/prediction.txt
+# run with --> docker compose -f .\docker-compose.ai.yml up
+
+version: "3.8"
+
+services:
+  knowledgeBase:
+    image: gerhard1132/knowledgebase-gradepredictor:latest
+    volumes:
+      - ai_system:/tmp
+    command: 
+      - sh
+      - "-c"
+      - |
+        rm -rf /tmp/knowledgeBase/ && cp -r /knowledgeBase/ /tmp/;
+
+  activationBase:
+      image: gerhard1132/activationbase-gradepredictor
+      volumes:
+        - ai_system:/tmp
+      command: 
+      - sh
+      - "-c"
+      - |
+        rm -rf /tmp/activationBase/ && cp -r /activationBase/ /tmp/;
+
+  codeBase:
+    image: gerhard1132/codebase-gradepredictor:latest
+    volumes:
+      - ai_system:/tmp
+    depends_on:
+      - activationBase
+      - knowledgeBase
+    command: 
+      - sh
+      - "-c"
+      - |
+        rm -rf /tmp/codeBase/ && cp -r /codeBase/ /tmp/;
+        python /tmp/codeBase/ai_solution/apply_NN.py "/tmp/codeBase/ai_solution/result/" "/tmp/knowledgeBase/currentAiSolution.h5" "/tmp/activationBase/activation_data.csv";
+      # results under: cat /tmp/codeBase/ai_solution/result/prediction.txt
+
+volumes:
+  ai_system:
+    external: true
