@@ -6,15 +6,18 @@ services:
     volumes:
       - ai_system:/tmp
 
+  activationBase:
+      image: gerhard1132/activationbase-gradepredictor
+      volumes:
+        - ai_system:/tmp
+
   codebase:
     image: gerhard1132/codebase-gradepredictor:latest
     volumes:
       - ai_system:/tmp
+    command: - 
   
-  activationBase:
-    image: gerhard1132/activationBase-gradepredictor
-    volumes:
-      -- ai_system:/tmp
+ 
 
 volumes:
   ai_system:
