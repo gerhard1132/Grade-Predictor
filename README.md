@@ -7,15 +7,17 @@ This repository and its structure is based on AI-CPS by Marcus Grum. It intends 
 3. Sleep Hours and
 4. Attendance (%)
 
-It includes two different approaches:
-
-1. OLS Regression (Ordinary Least Squares)
-2. Neural Network (AI Model)
-
 A following estimate of a grade between 0-100 is made by a neural network. 
 
 # Getting Started
-Run the provided OLS or AI model with the corresponding `docker compose` command:
+
+This project includes two approaches for grade prediction:
+
+1. OLS Regression (Ordinary Least Squares): Uses traditional statistical regression  
+   for prediction
+2. Neural Network (AI Model): Uses TensorFlow/Keras for deep learning prediction
+
+Run the provided OLS or AI model with the corresponding `docker compose` command (Ensure Docker is installed on your system):
 
 1. OLS model: 
 ```bash
