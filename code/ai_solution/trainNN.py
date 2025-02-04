@@ -52,8 +52,14 @@ data_for_heatmap["Actual Grades"] = output_test.values
 # Visualize the results
 plt.figure(figsize=(10, 8))
 seaborn.heatmap(data_for_heatmap.corr(), annot=True, cmap='coolwarm')
-plt.title('Korrelation zwischen Eingaben und Ergebnissen')
+# Fix cropping issues
+plt.xticks(rotation=45, ha="right")  
+plt.yticks(rotation=0) 
+plt.tight_layout()  
+
+plt.title('Correlation between Inputs und Results')
 plt.savefig(os.path.join(docs_folder,'ai_result_heatmap.png'))
+
 # Step 7: Evaluate the model
 loss = model.evaluate(input_test, output_test)
 print(f"Test Loss: {loss}")
@@ -66,3 +72,14 @@ plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
 plt.savefig(os.path.join(docs_folder,'loss_epochs.png'))
+
+# Create a scatter plot to compare actual vs. predicted grades
+plt.figure(figsize=(8, 6))
+plt.scatter(output_test, output_pred, alpha=0.5, color="blue")
+plt.xlabel("Actual Grades")  
+plt.ylabel("Predicted Grades")  
+plt.title("AI Model: Actual vs. Predicted Grades")  
+
+# Save the scatter plot in the documentation folder
+plt.savefig(os.path.join(docs_folder, "ai_scatter_plot.png"))
+plt.show()

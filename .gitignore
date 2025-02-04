@@ -8,4 +8,6 @@
 temp/ 
 code/logs
 code/experiments/logs
-code/messageClient/logs
+code/messageClient/logsvenv/
+venv/
+ # Adds a new line at the end if missing
