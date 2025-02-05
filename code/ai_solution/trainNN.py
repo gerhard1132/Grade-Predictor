@@ -2,6 +2,7 @@
 import pandas as pd
 import os
 import seaborn as sns
+import numpy as np
 import pandas as pd
 from tensorflow.keras import layers, models # type: ignore
 from tensorflow.keras.models import load_model # type: ignore
@@ -78,9 +79,11 @@ plt.figure(figsize=(8, 6))
 plt.scatter(output_test, output_pred, alpha=0.5, color="blue")
 # Add a regression line
 sns.regplot(x=output_test, y=output_pred, scatter=False, color="red", line_kws={"linewidth": 2}, label="Regression Line")
-
+x_vals = np.linspace(min(output_test), max(output_test), 100)
+plt.plot(x_vals, x_vals, color="green", linestyle="--", linewidth=2, label="Optimal Line")
 plt.xlabel("Actual Grades")  
-plt.ylabel("Predicted Grades")  
+plt.ylabel("Predicted Grades")
+plt.legend()
 plt.title("AI Model: Actual vs. Predicted Grades")  
 
 # Save the scatter plot in the documentation folder
