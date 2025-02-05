@@ -1,7 +1,7 @@
 
 import pandas as pd
 import os
-import seaborn
+import seaborn as sns
 import pandas as pd
 from tensorflow.keras import layers, models # type: ignore
 from tensorflow.keras.models import load_model # type: ignore
@@ -51,7 +51,7 @@ data_for_heatmap["Actual Grades"] = output_test.values
 
 # Visualize the results
 plt.figure(figsize=(10, 8))
-seaborn.heatmap(data_for_heatmap.corr(), annot=True, cmap='coolwarm')
+sns.heatmap(data_for_heatmap.corr(), annot=True, cmap='coolwarm')
 # Fix cropping issues
 plt.xticks(rotation=45, ha="right")  
 plt.yticks(rotation=0) 
@@ -76,6 +76,9 @@ plt.savefig(os.path.join(docs_folder,'loss_epochs.png'))
 # Create a scatter plot to compare actual vs. predicted grades
 plt.figure(figsize=(8, 6))
 plt.scatter(output_test, output_pred, alpha=0.5, color="blue")
+# Add a regression line
+sns.regplot(x=output_test, y=output_pred, scatter=False, color="red", line_kws={"linewidth": 2}, label="Regression Line")
+
 plt.xlabel("Actual Grades")  
 plt.ylabel("Predicted Grades")  
 plt.title("AI Model: Actual vs. Predicted Grades")  

@@ -46,6 +46,7 @@ with open("currentOlsSolution.pkl", "wb") as file:
 # Step 8️: Visualizations (Scatter Plot & Residual Plot)
 plt.figure(figsize=(8,6))
 plt.scatter(y_test, ols_model.predict(X_test_ols), alpha=0.5)
+sns.regplot(x=y_test, y=ols_model.predict(X_test_ols), scatter=False, color="red", line_kws={"linewidth": 2}, label="Regression Line")
 plt.xlabel("Actual Grades")  # Updated label
 plt.ylabel("Predicted Grades")  # Updated label
 plt.title("OLS Model: Actual vs. Predicted Grades")  # Updated title

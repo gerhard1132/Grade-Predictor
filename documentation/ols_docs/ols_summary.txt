@@ -3,8 +3,8 @@
 Dep. Variable:                 Grades   R-squared:                       0.770
 Model:                            OLS   Adj. R-squared:                  0.769
 Method:                 Least Squares   F-statistic:                     919.6
-Date:                Thu, 30 Jan 2025   Prob (F-statistic):               0.00
-Time:                        00:21:05   Log-Likelihood:                -3169.5
+Date:                Wed, 05 Feb 2025   Prob (F-statistic):               0.00
+Time:                        00:53:25   Log-Likelihood:                -3169.5
 No. Observations:                1104   AIC:                             6349.
 Df Residuals:                    1099   BIC:                             6374.
 Df Model:                           4                                         
