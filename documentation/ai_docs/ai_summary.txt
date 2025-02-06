@@ -1,0 +1,6 @@
+
+General metrics about the neural network:
+
+Mean absolute Error (MAE): 2.5520858351504327
+R^2 Score: 0.8661544239429582
+Root Mean Squared Error (RMSE): 3.489644988323354

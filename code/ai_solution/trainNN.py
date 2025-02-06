@@ -2,6 +2,7 @@
 import pandas as pd
 import os
 import seaborn as sns
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import numpy as np
 import pandas as pd
 from tensorflow.keras import layers, models # type: ignore
@@ -45,6 +46,19 @@ output_pred = model.predict(input_test)
 sample_input = pd.DataFrame([[0.5, 100, 8, 100]], columns=["Socioeconomic Score", "Study Hours", "Sleep Hours", "Attendance (%)"])
 prediction = model.predict(sample_input)
 print(f'The models grade prediction is: {prediction}')
+
+mae = mean_absolute_error(output_test, output_pred)
+r2 = r2_score(output_test, output_pred)
+rmse = np.sqrt(mean_squared_error(output_test, output_pred))
+
+with open(os.path.join(docs_folder,'ai_summary.txt'), "w") as file:
+    file.write(f"""
+General metrics about the neural network:
+
+Mean absolute Error (MAE): {mae}
+R^2 Score: {r2}
+Root Mean Squared Error (RMSE): {rmse}
+""")
 
 data_for_heatmap = pd.DataFrame(input_test, columns=["Socioeconomic Score", "Study Hours", "Sleep Hours", "Attendance (%)"])
 data_for_heatmap["Predicted Grades"] = output_pred.flatten()
