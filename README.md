@@ -13,11 +13,20 @@ A following estimate of a grade between 0-100 is made by a neural network.
 
 This project includes two approaches for grade prediction:
 
-1. OLS Regression (Ordinary Least Squares): Uses traditional statistical regression  
+*  OLS Regression (Ordinary Least Squares): Uses traditional statistical regression  
    for prediction
-2. Neural Network (AI Model): Uses TensorFlow/Keras for deep learning prediction
+*  Neural Network (AI Model): Uses TensorFlow/Keras for deep learning prediction
 
-Run the provided OLS or AI model with the corresponding `docker compose` command (Ensure Docker is installed on your system):
+First, make sure you have a docker volume named _ai_system_ on your system. If not, create it with the command 
+```bash
+docker volume create ai_system
+```
+
+After changing your students information under '~/images/activationBase_GradePredictor/activation_data.csv', build your current activation image with:
+```bash
+docker build -t gerhard1132/activationbase-gradepredictor .
+```
+Finally, run the provided OLS or AI model with the corresponding `docker compose` command (Ensure Docker is installed on your system):
 
 1. OLS model: 
 ```bash
@@ -34,6 +43,11 @@ Every image used in this repository can be found on the dockerhub account [here]
 # Authors
 Roman Klinghammer _(rklinghammer@uni-potsdam.de)_
 Zunaira Iqbal _(iqbal2@uni-potsdam.de)_
+
+# License 
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](./LICENSE) file for details.
+
 
 # Status
 Finished project! (Project done under module AIBAS at the University of Potsdam)
