@@ -1,7 +1,9 @@
 
 import pandas as pd
 import os
-import seaborn
+import seaborn as sns
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
 import pandas as pd
 from tensorflow.keras import layers, models # type: ignore
 from tensorflow.keras.models import load_model # type: ignore
@@ -40,10 +42,25 @@ output_test = test_data["Grades"]
 
 # Predict using the trained model
 output_pred = model.predict(input_test)
+residuals = output_test - output_pred.flatten()
+
 
 sample_input = pd.DataFrame([[0.5, 100, 8, 100]], columns=["Socioeconomic Score", "Study Hours", "Sleep Hours", "Attendance (%)"])
 prediction = model.predict(sample_input)
 print(f'The models grade prediction is: {prediction}')
+
+mae = mean_absolute_error(output_test, output_pred)
+r2 = r2_score(output_test, output_pred)
+rmse = np.sqrt(mean_squared_error(output_test, output_pred))
+
+with open(os.path.join(docs_folder,'ai_summary.txt'), "w") as file:
+    file.write(f"""
+General metrics about the neural network:
+
+Mean absolute Error (MAE): {mae}
+R^2 Score: {r2}
+Root Mean Squared Error (RMSE): {rmse}
+""")
 
 data_for_heatmap = pd.DataFrame(input_test, columns=["Socioeconomic Score", "Study Hours", "Sleep Hours", "Attendance (%)"])
 data_for_heatmap["Predicted Grades"] = output_pred.flatten()
@@ -51,9 +68,15 @@ data_for_heatmap["Actual Grades"] = output_test.values
 
 # Visualize the results
 plt.figure(figsize=(10, 8))
-seaborn.heatmap(data_for_heatmap.corr(), annot=True, cmap='coolwarm')
-plt.title('Korrelation zwischen Eingaben und Ergebnissen')
+sns.heatmap(data_for_heatmap.corr(), annot=True, cmap='coolwarm')
+# Fix cropping issues
+plt.xticks(rotation=45, ha="right")  
+plt.yticks(rotation=0) 
+plt.tight_layout()  
+
+plt.title('Correlation between Inputs und Results')
 plt.savefig(os.path.join(docs_folder,'ai_result_heatmap.png'))
+
 # Step 7: Evaluate the model
 loss = model.evaluate(input_test, output_test)
 print(f"Test Loss: {loss}")
@@ -66,3 +89,25 @@ plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
 plt.savefig(os.path.join(docs_folder,'loss_epochs.png'))
+
+# Create a scatter plot to compare actual vs. predicted grades
+plt.figure(figsize=(8, 6))
+plt.scatter(output_test, output_pred, alpha=0.5, color="blue")
+sns.regplot(x=output_test, y=output_pred, scatter=False, color="red", line_kws={"linewidth": 2}, label="Regression Line")
+x_vals = np.linspace(min(output_test), max(output_test), 100)
+plt.plot(x_vals, x_vals, color="green", linestyle="--", linewidth=2, label="Optimal Line")
+plt.xlabel("Actual Grades")  
+plt.ylabel("Predicted Grades")
+plt.legend()
+plt.title("AI Model: Actual vs. Predicted Grades")  
+plt.savefig(os.path.join(docs_folder, "ai_scatter_plot.png"))
+plt.show()
+
+# Visualize the residuals distribution
+plt.figure(figsize=(8, 6))
+sns.histplot(residuals, bins=30, kde=True)
+plt.title('Distribution of Residuals')
+plt.xlabel('Residuals')
+plt.ylabel('Frequency')
+plt.savefig(os.path.join(docs_folder, "ai_residual_plot.png"))
+plt.show()
